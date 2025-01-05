@@ -1,9 +1,7 @@
 % layout 'default';
-% title 'Welcome';
-<h2><%= $msg %></h2>
-<p>
-  This page was generated from the template "templates/example/welcome.html.ep"
-  and the layout "templates/layouts/default.html.ep",
-  <%= link_to 'click here' => url_for %> to reload the page or
-  <%= link_to 'here' => '/index.html' %> to move forward to a static page.
-</p>
+% title 'Profiler';
+<form method="post">
+  <label for="url">Profile URL:</label>
+  <input type="text" class="form_control" name="url" value="<%= $url %>" title="<%= $url %>">
+  <input type="submit" class="btn btn-sm btn-primary btn-block" name="submit" value="Submit" title="Submit text">
+</form>
