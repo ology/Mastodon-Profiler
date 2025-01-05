@@ -6,8 +6,8 @@ sub startup ($self) {
   $self->secrets($config->{secrets});
 
   my $r = $self->routes;
-  $r->get('/')->to('Main#index');
-  $r->post('/')->to('Main#profiler');
+  $r->get('/')->to('Main#index')->name('index');
+  $r->post('/')->to('Main#profiler')->name('profiler');
 }
 
 1;
