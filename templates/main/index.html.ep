@@ -1,7 +1,9 @@
 % layout 'default';
 % title 'Profiler';
 <form method="post">
-  <label for="url">Profile URL:</label>
-  <input type="text" class="form-control" name="url" value="<%= $url %>" title="<%= $url %>">
-  <input type="submit" class="btn btn-sm btn-primary btn-block" name="submit" value="Submit" title="Submit text">
+  <div class="mb-3">
+    <label for="url" class="form-label">Profile URL:</label>
+    <input type="email" class="form-control" id="url" name="url" value="<%= $url %>" title="<%= $url %>" aria-describedby="urlHelp">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
 </form>
