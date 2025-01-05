@@ -9,8 +9,11 @@ sub index ($self) {
 }
 
 sub profiler ($self) {
-  my $url = $self->param('url') || '';
-  $self->redirect_to($self->url_for('index')->query(url => $url));
+  my $url = $self->param('url');
+  $self->render(
+    template => 'main/index',
+    url      => $url,
+  );
 }
 
 1;
