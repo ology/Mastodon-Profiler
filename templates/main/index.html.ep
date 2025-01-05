@@ -1,5 +1,4 @@
 % layout 'default';
-% title 'Profiler';
 <form method="post">
   <div class="mb-3">
     <label for="url" class="form-label">Profile URL:</label>
