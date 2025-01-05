@@ -2,6 +2,6 @@
 % title 'Profiler';
 <form method="post">
   <label for="url">Profile URL:</label>
-  <input type="text" class="form_control" name="url" value="<%= $url %>" title="<%= $url %>">
+  <input type="text" class="form-control" name="url" value="<%= $url %>" title="<%= $url %>">
   <input type="submit" class="btn btn-sm btn-primary btn-block" name="submit" value="Submit" title="Submit text">
 </form>
