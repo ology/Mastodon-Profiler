@@ -14,7 +14,7 @@ sub index ($self) {
 
 sub profiler ($self) {
   my $server = $self->param('server') || '';
-  my $user   = $self->param('user') || '';
+  my $user = $self->param('user') || '';
   my $uri = URI->new("//$server");
   $uri->scheme('https');
   $uri->path('api/v1/accounts/lookup');
