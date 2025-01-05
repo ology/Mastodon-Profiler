@@ -7,6 +7,7 @@ sub startup ($self) {
 
   my $r = $self->routes;
   $r->get('/')->to('Main#index');
+  $r->post('/')->to('Main#profiler');
 }
 
 1;
