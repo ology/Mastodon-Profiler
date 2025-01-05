@@ -8,4 +8,9 @@ sub index ($self) {
   );
 }
 
+sub profiler ($self) {
+  my $url = $self->param('url') || '';
+  $self->redirect_to('index')->query(url => $url);
+}
+
 1;
