@@ -1,18 +1,29 @@
 package Mastodon::Profiler::Controller::Main;
 use Mojo::Base 'Mojolicious::Controller', -signatures;
 
+use URI ();
+
 sub index ($self) {
-  my $url = $self->param('url') || '';
+  my $server = $self->param('server') || '';
+  my $user   = $self->param('user') || '';
   $self->render(
-    url => $url,
+    server => $server,
+    user   => $user,
   );
 }
 
 sub profiler ($self) {
-  my $url = $self->param('url');
+  my $server = $self->param('server') || '';
+  my $user   = $self->param('user') || '';
+  my $uri = URI->new("//$server");
+  $uri->scheme('https');
+  $uri->path('api/v1/accounts/lookup');
+  $uri->query_form(acct => $user);
   $self->render(
     template => 'main/index',
-    url      => $url,
+    server   => $server,
+    user     => $user,
+    uri      => $uri->as_string,
   );
 }
 
