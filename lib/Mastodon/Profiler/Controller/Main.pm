@@ -27,9 +27,15 @@ sub profiler ($self) {
   my $response = _handle_response($tx);
   $uri = Mojo::URL->new("https://$server")
     ->path("/api/v1/accounts/$response->{id}/statuses")
+    ->query(min_id => 0, limit => 1);
+  $tx = $ua->get($uri);
+  my $first = _handle_response($tx);
+  $uri = Mojo::URL->new("https://$server")
+    ->path("/api/v1/accounts/$response->{id}/statuses")
     ->query(limit => 1);
   $tx = $ua->get($uri);
-  my $posts = _handle_response($tx);
+  my $last = _handle_response($tx);
+  my $posts = [ $first->[0], $last->[0] ];
   # $uri = Mojo::URL->new("https://$server")
     # ->path("/api/v1/accounts/$response->{id}/followers");
   # $tx = $ua->get($uri);
