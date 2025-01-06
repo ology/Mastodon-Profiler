@@ -11,5 +11,11 @@
 </form>
 % if ($uri) {
 <hr>
-<%= $uri %>
+% }
+% if ($response) {
+<h2><%= $response->{display_name} %> (<%= $response->{username} %>)</h2>
+<img src="<%= $response->{avatar} %>">
+<p>Last seen: <%= $response->{last_status_at} %></p>
+<p>Following: <%= $response->{following_count} %> / Followers: <%= $response->{followers_count} %></p>
+<img src="<%= $response->{header} %>">
 % }
