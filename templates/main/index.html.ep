@@ -1,8 +1,15 @@
 % layout 'default';
 <form method="post">
   <div class="mb-3">
-    <label for="url" class="form-label">Profile URL:</label>
-    <input type="url" class="form-control" id="url" name="url" value="<%= $url %>">
+    <label for="server" class="form-label">Server:</label>
+    <input type="server" class="form-control" id="server" name="server" value="<%= $server %>">
+    <p></p>
+    <label for="user" class="form-label">User:</label>
+    <input type="user" class="form-control" id="user" name="user" value="<%= $user %>">
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+% if ($uri) {
+<hr>
+<%= $uri %>
+% }
