@@ -1,7 +1,7 @@
 % layout 'default';
 <form method="post">
   <div class="mb-3">
-    <input type="profile" class="form-control" id="profile" name="profile" value="<%= $profile %>" placeholder="@user@server.somewhere">
+    <input type="profile" class="form-control" id="profile" name="profile" value="<%= $profile %>" placeholder="@user@server.name">
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
