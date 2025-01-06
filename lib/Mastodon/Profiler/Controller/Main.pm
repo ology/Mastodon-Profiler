@@ -8,11 +8,11 @@ use Try::Tiny;
 
 sub index ($self) {
   $self->render(
-    profile   => '',
-    response  => {},
-    posts     => {},
-    followers => [],
-    following => [],
+    profile   => undef,
+    response  => undef,
+    posts     => undef,
+    followers => undef,
+    following => undef,
   );
 }
 
