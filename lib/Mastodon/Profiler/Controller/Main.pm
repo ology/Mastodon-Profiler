@@ -23,18 +23,19 @@ sub profiler ($self) {
     ->query(acct => $user);
   my $ua = Mojo::UserAgent->new;
   my $tx = $ua->get($uri);
-  my $data = _handle_response($tx);
+  my $response = _handle_response($tx);
   $self->render(
     template => 'main/index',
     server   => $server,
     user     => $user,
     uri      => $uri,
+    response => $response,
   );
 }
 
 sub _handle_response {
     my ($tx) = @_;
-    my $data;
+    my $data = {};
     my $res = $tx->result;
     if ($res->is_success) {
       my $body = $res->body;
