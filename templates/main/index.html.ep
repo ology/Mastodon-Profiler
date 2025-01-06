@@ -15,7 +15,7 @@
 <p><b>Following</b>: <%= $response->{following_count} %></p>
 <p><b>Followers</b>: <%= $response->{followers_count} %></p>
 <p></p>
-<img src="<%= $response->{avatar} %>" width="300" height="300">
+<img src="<%= $response->{avatar} %>" width="200" height="200">
 <br>
-<img src="<%= $response->{header} %>">
+<img src="<%= $response->{header} %>" width="800" height="200">
 % }
