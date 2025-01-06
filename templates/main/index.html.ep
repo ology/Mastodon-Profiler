@@ -8,12 +8,25 @@
 % if ($response) {
 <hr>
 <h2><%= $response->{display_name} %> (<%= $response->{username} %>)</h2>
-<p>Last seen: <%= $response->{last_status_at} %></p>
-<p>Post: <%== $posts->[0]->{content} %></p>
-<p>Following: <%= $response->{following_count} %></p>
-<p><a href=""><%= $following->[0]->{username} %></p></a>
-<p>Followers: <%= $response->{followers_count} %></p>
-<p><a href=""><%= $followers->[0]->{username} %></p></a>
+<p><b>Last seen</b>: <%= $response->{last_status_at} %></p>
+<p><%== $posts->[0]->{content} %></p>
+<p><b>Following</b>: <%= $response->{following_count} %></p>
+% for my $f (@$following) {
+<a href=""><%= $f->{username} %></a>,
+% }
+% if (40 < $response->{following_count}) {
+...
+% }
+<p></p>
+<p><b>Followers</b>: <%= $response->{followers_count} %></p>
+% for my $f (@$followers) {
+<a href=""><%= $f->{username} %></a>,
+% }
+% if (40 < $response->{followers_count}) {
+...
+% }
+<p></p>
+<p></p>
 <img src="<%= $response->{avatar} %>">
 <br>
 <img src="<%= $response->{header} %>">
