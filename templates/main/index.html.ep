@@ -1,8 +1,7 @@
 % layout 'default';
 <form method="post">
   <div class="mb-3">
-    <label for="profile" class="form-label">Profile:</label>
-    <input type="profile" class="form-control" id="profile" name="profile" value="<%= $profile %>">
+    <input type="profile" class="form-control" id="profile" name="profile" value="<%= $profile %>" placeholder="@user@server.somewhere">
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
@@ -11,7 +10,10 @@
 <h2><%= $response->{display_name} %> (<%= $response->{username} %>)</h2>
 <p>Last seen: <%= $response->{last_status_at} %></p>
 <p>Post: <%== $posts->[0]->{content} %></p>
-<p>Following: <%= $response->{following_count} %> / Followers: <%= $response->{followers_count} %></p>
+<p>Following: <%= $response->{following_count} %></p>
+<p><a href=""><%= $following->[0]->{username} %></p></a>
+<p>Followers: <%= $response->{followers_count} %></p>
+<p><a href=""><%= $followers->[0]->{username} %></p></a>
 <img src="<%= $response->{avatar} %>">
 <br>
 <img src="<%= $response->{header} %>">
