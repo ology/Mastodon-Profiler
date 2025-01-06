@@ -7,8 +7,10 @@
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 % if ($response) {
+<hr>
 <h2><%= $response->{display_name} %> (<%= $response->{username} %>)</h2>
 <p>Last seen: <%= $response->{last_status_at} %></p>
+<p>Post: <%== $posts->[0]->{content} %></p>
 <p>Following: <%= $response->{following_count} %> / Followers: <%= $response->{followers_count} %></p>
 <img src="<%= $response->{avatar} %>">
 <br>
