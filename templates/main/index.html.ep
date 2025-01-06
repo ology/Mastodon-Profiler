@@ -10,12 +10,13 @@
 <h2><%= $response->{display_name} %> (<%= $response->{username} %>)</h2>
 <p><b>Created</b>: <%= $response->{created_at} %></p>
 <p><b>Last seen</b>: <%= $response->{last_status_at} %></p>
-<p><%== $posts->[0]->{content} %></p>
 <p><b>Posts</b>: <%= $response->{statuses_count} %></p>
+<p><b>Last post</b>: <%== $posts->[-1]->{content} %></p>
+<p>...</p>
+<p><b>First post</b>: <%== $posts->[0]->{content} %></p>
 <p><b>Following</b>: <%= $response->{following_count} %></p>
 <p><b>Followers</b>: <%= $response->{followers_count} %></p>
 <p></p>
 <img src="<%= $response->{avatar} %>" width="200" height="200">
-<br>
 <img src="<%= $response->{header} %>" width="800" height="200">
 % }
