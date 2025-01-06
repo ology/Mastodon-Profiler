@@ -22,10 +22,16 @@ sub profiler ($self) {
   my $ua = Mojo::UserAgent->new;
   my $tx = $ua->get($uri);
   my $response = _handle_response($tx);
+  $uri = Mojo::URL->new("https://$server")
+    ->path("/api/v1/accounts/$response->{id}/statuses")
+    ->query(limit => 1);
+  $tx = $ua->get($uri);
+  my $posts = _handle_response($tx);
   $self->render(
     template => 'main/index',
     profile  => $profile,
     response => $response,
+    posts    => $posts,
   );
 }
 
