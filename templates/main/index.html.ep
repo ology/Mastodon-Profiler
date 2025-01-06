@@ -1,17 +1,11 @@
 % layout 'default';
 <form method="post">
   <div class="mb-3">
-    <label for="server" class="form-label">Server:</label>
-    <input type="server" class="form-control" id="server" name="server" value="<%= $server %>">
-    <p></p>
-    <label for="user" class="form-label">User:</label>
-    <input type="user" class="form-control" id="user" name="user" value="<%= $user %>">
+    <label for="profile" class="form-label">Profile:</label>
+    <input type="profile" class="form-control" id="profile" name="profile" value="<%= $profile %>">
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
-% if ($uri) {
-<hr>
-% }
 % if ($response) {
 <h2><%= $response->{display_name} %> (<%= $response->{username} %>)</h2>
 <p>Last seen: <%= $response->{last_status_at} %></p>
