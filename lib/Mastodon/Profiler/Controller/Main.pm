@@ -30,21 +30,21 @@ sub profiler ($self) {
     ->query(limit => 1);
   $tx = $ua->get($uri);
   my $posts = _handle_response($tx);
-  $uri = Mojo::URL->new("https://$server")
-    ->path("/api/v1/accounts/$response->{id}/followers");
-  $tx = $ua->get($uri);
-  my $followers = _handle_response($tx);
-  $uri = Mojo::URL->new("https://$server")
-    ->path("/api/v1/accounts/$response->{id}/following");
-  $tx = $ua->get($uri);
-  my $following = _handle_response($tx);
+  # $uri = Mojo::URL->new("https://$server")
+    # ->path("/api/v1/accounts/$response->{id}/followers");
+  # $tx = $ua->get($uri);
+  # my $followers = _handle_response($tx);
+  # $uri = Mojo::URL->new("https://$server")
+    # ->path("/api/v1/accounts/$response->{id}/following");
+  # $tx = $ua->get($uri);
+  # my $following = _handle_response($tx);
   $self->render(
     template  => 'main/index',
     profile   => $profile,
     response  => $response,
     posts     => $posts,
-    followers => $followers,
-    following => $following,
+    # followers => $followers,
+    # following => $following,
   );
 }
 
