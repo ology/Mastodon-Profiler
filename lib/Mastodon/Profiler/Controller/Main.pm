@@ -7,9 +7,8 @@ use Mojo::UserAgent ();
 use Try::Tiny;
 
 sub index ($self) {
-  my $profile = $self->param('profile') || '';
   $self->render(
-    profile  => $profile,
+    profile  => undef,
     response => undef,
   );
 }
