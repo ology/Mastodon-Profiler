@@ -36,17 +36,17 @@ sub _handle_response {
     my ($tx) = @_;
     my $data;
     my $res = $tx->result;
-    if ( $res->is_success ) {
+    if ($res->is_success) {
       my $body = $res->body;
       try {
         $data = decode_json($body);
       }
       catch {
-        die $body, "\n";
+        warn $body, "\n";
       };
     }
     else {
-      die "Connection error: ", $res->message, "\n";
+      warn "Connection error: ", $res->message, "\n";
     }
     return $data;
 }
