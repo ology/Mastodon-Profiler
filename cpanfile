@@ -5,4 +5,4 @@ requires 'Mojo::UserAgent';
 requires 'Try::Tiny';
 requires 'Lingua::EN::Opinion';
 requires 'WordNet::QueryData';
-requires 'WordNet::stem';
+requires 'WordNet::Similarity';
