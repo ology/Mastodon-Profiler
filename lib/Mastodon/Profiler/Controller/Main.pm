@@ -1,6 +1,7 @@
 package Mastodon::Profiler::Controller::Main;
 use Mojo::Base 'Mojolicious::Controller', -signatures;
 
+use Lingua::EN::Opinion ();
 use Mojo::JSON qw(decode_json);
 use Mojo::URL ();
 use Mojo::UserAgent ();
@@ -11,6 +12,7 @@ sub index ($self) {
     profile  => undef,
     response => undef,
     posts    => undef,
+    opinions => undef,
   );
 }
 
@@ -30,11 +32,19 @@ sub profiler ($self) {
     ->query(limit => 1);
   my $last = _handle_request($uri);
   my $posts = [ $first->[0], $last->[0] ];
+  my @opinions;
+  my $opinion = Lingua::EN::Opinion->new(text => $posts->[0]->{content}, stem => 1);
+  $opinion->analyze();
+  push @opinions, $opinion->averaged_scores(5);
+  $opinion = Lingua::EN::Opinion->new(text => $posts->[-1]->{content}, stem => 1);
+  $opinion->analyze();
+  push @opinions, $opinion->averaged_scores(5);
   $self->render(
     template => 'main/index',
     profile  => $profile,
     response => $response,
     posts    => $posts,
+    opinions => \@opinions,
   );
 }
 
