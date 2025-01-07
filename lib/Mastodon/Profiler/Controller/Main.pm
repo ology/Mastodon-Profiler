@@ -42,9 +42,9 @@ sub profiler ($self) {
 
 sub _handle_request {
     my ($uri) = @_;
+    my $data = {};
     my $ua = Mojo::UserAgent->new;
     my $tx = $ua->get($uri);
-    my $data = {};
     my $res = $tx->result;
     if ($res->is_success) {
       my $body = $res->body;
