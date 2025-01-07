@@ -33,12 +33,17 @@ sub profiler ($self) {
   my $last = _handle_request($uri);
   my $posts = [ $first->[0], $last->[0] ];
   my @opinions;
-  my $opinion = Lingua::EN::Opinion->new(text => $posts->[0]->{content}, stem => 1);
-  $opinion->analyze();
-  push @opinions, $opinion->averaged_scores(5);
-  $opinion = Lingua::EN::Opinion->new(text => $posts->[-1]->{content}, stem => 1);
-  $opinion->analyze();
-  push @opinions, $opinion->averaged_scores(5);
+  my $opinion;
+  if ($posts->[0]->{content}) {
+    $opinion = Lingua::EN::Opinion->new(text => $posts->[0]->{content}, stem => 1);
+    $opinion->analyze();
+    push @opinions, $opinion->averaged_scores(0)->[0];
+  }
+  if ($posts->[-1]->{content}) {
+    $opinion = Lingua::EN::Opinion->new(text => $posts->[-1]->{content}, stem => 1);
+    $opinion->analyze();
+    push @opinions, $opinion->averaged_scores(0)->[0];
+  }
   $self->render(
     template => 'main/index',
     profile  => $profile,
