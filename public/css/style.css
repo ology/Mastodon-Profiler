@@ -6,7 +6,8 @@
   color: darkgrey;
 }
 .bkgdcolor {
-  padding: 10px;
+  padding-top: 10px;
+  padding-left: 10px;
   margin: auto; 
   height: auto; 
   background-color: #E5E4E2; 
