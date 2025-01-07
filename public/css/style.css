@@ -5,3 +5,10 @@
   font-size: small;
   color: darkgrey;
 }
+.bkgdcolor {
+  padding: 10px;
+  margin: auto; 
+  height: auto; 
+  background-color: lightgray; 
+  overflow: auto;
+}
