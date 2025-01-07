@@ -1,0 +1,5 @@
+requires 'Mojolicious';
+requires 'Mojo::JSON';
+requires 'Mojo::URL;;
+requires 'Mojo::UserAgent';
+requires 'Try::Tiny';
