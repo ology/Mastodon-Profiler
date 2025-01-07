@@ -13,9 +13,15 @@
   /
   <b>Followers</b>: <%= $response->{followers_count} %></p>
 <p><b>Posts</b>: <%= $response->{statuses_count} %></p>
-<p><b>Last seen</b>: <%= $response->{last_status_at} %></p>
-<p><b>Last post</b>: <%== $posts->[-1]->{content} %></p>
-<p><b>First post</b>: <%== $posts->[0]->{content} %></p>
+<p><b>Last post</b> (<%= $posts->[-1]->{created_at} %>):</p>
+  <div class="bkgdcolor">
+    <%== $posts->[-1]->{content} %>
+  </div>
+<p></p>
+<p><b>First post</b> (<%= $posts->[0]->{created_at} %>):</p>
+  <div class="bkgdcolor">
+    <%== $posts->[0]->{content} %>
+  </div>
 <p></p>
 <img src="<%= $response->{avatar} %>" width="200" height="200">
 <img src="<%= $response->{header} %>" width="800" height="200">
