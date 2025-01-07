@@ -23,6 +23,6 @@
     <%== $posts->[0]->{content} %>
   </div>
 <p></p>
-<img src="<%= $response->{avatar} %>" width="200" height="200">
-<img src="<%= $response->{header} %>" width="800" height="200">
+<img src="<%= $response->{avatar} %>" height="200">
+<img src="<%= $response->{header} %>" height="200">
 % }
