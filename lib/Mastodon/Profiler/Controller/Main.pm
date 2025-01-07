@@ -22,19 +22,15 @@ sub profiler ($self) {
   my $uri = Mojo::URL->new("https://$server")
     ->path('api/v1/accounts/lookup')
     ->query(acct => $user);
-  my $ua = Mojo::UserAgent->new;
-  my $tx = $ua->get($uri);
-  my $response = _handle_response($tx);
+  my $response = _handle_request($uri);
   $uri = Mojo::URL->new("https://$server")
     ->path("/api/v1/accounts/$response->{id}/statuses")
     ->query(min_id => 0, limit => 1);
-  $tx = $ua->get($uri);
-  my $first = _handle_response($tx);
+  my $first = _handle_request($uri);
   $uri = Mojo::URL->new("https://$server")
     ->path("/api/v1/accounts/$response->{id}/statuses")
     ->query(limit => 1);
-  $tx = $ua->get($uri);
-  my $last = _handle_response($tx);
+  my $last = _handle_request($uri);
   my $posts = [ $first->[0], $last->[0] ];
   # $uri = Mojo::URL->new("https://$server")
     # ->path("/api/v1/accounts/$response->{id}/followers");
@@ -54,8 +50,10 @@ sub profiler ($self) {
   );
 }
 
-sub _handle_response {
-    my ($tx) = @_;
+sub _handle_request {
+    my ($uri) = @_;
+    my $ua = Mojo::UserAgent->new;
+    my $tx = $ua->get($uri);
     my $data = {};
     my $res = $tx->result;
     if ($res->is_success) {
