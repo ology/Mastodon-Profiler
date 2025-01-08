@@ -39,7 +39,7 @@ sub profiler ($self) {
   }
   my $opinion = Lingua::EN::Opinion->new(text => $content, stem => 1);
   $opinion->analyze();
-  my $score = $opinion->averaged_scores(0)->[0];
+  my $score = $opinion->averaged_scores(4)->[0];
   $self->render(
     template => 'main/index',
     profile  => $profile,
