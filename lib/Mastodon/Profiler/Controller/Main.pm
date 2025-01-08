@@ -2,6 +2,7 @@ package Mastodon::Profiler::Controller::Main;
 use Mojo::Base 'Mojolicious::Controller', -signatures;
 
 use Lingua::EN::Opinion ();
+use Mojo::DOM ();
 use Mojo::JSON qw(decode_json);
 use Mojo::URL ();
 use Mojo::UserAgent ();
@@ -28,11 +29,18 @@ sub profiler ($self) {
     ->query(min_id => 0, limit => 1);
   my $first = _handle_request($uri);
   $uri = Mojo::URL->new("https://$server")
-    ->path("/api/v1/accounts/$response->{id}/statuses")
-    ;#->query(limit => 1);
+    ->path("/api/v1/accounts/$response->{id}/statuses");
   my $last = _handle_request($uri);
-  my $content = join "\n\n", map { $_->{content} } @$last;
-  my $posts = [ $first->[0], @$last ];
+  my $posts = [ @$first, reverse @$last ];
+  my @statuses;
+  my $content = '';
+  for my $post (@$posts) {
+    next unless $post->{content};
+    push @statuses, $post;
+    my $dom = Mojo::DOM->new($post->{content});
+    my $text = $dom->all_text;
+    $content .= "\n\n$text" if $text;
+  }
   my $opinion = Lingua::EN::Opinion->new(text => $content, stem => 1);
   $opinion->analyze();
   my $score = $opinion->averaged_scores(0)->[0];
@@ -40,7 +48,7 @@ sub profiler ($self) {
     template => 'main/index',
     profile  => $profile,
     response => $response,
-    posts    => $posts,
+    posts    => \@statuses,
     score    => $score,
   );
 }
