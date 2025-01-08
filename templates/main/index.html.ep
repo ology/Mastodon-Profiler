@@ -18,7 +18,7 @@
     <%== $posts->[-1]->{content} %>
   </div>
 <p></p>
-<p><b>Last sentiment</b>: <%= sprintf '%.3f', $score %>
+<p><b>Last 20 sentimenti score</b>: <%= sprintf '%.3f', $score %>
 <p></p>
 <img src="<%= $response->{avatar} %>" height="200">
 <img src="<%= $response->{header} %>" height="200">
