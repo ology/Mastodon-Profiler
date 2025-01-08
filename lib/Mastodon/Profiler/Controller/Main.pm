@@ -40,6 +40,22 @@ sub profiler ($self) {
   my $opinion = Lingua::EN::Opinion->new(text => $content, stem => 1);
   $opinion->analyze();
   my $score = $opinion->averaged_scores(4)->[0];
+  my (%following, %followers);
+#  my $count = 0;
+#  while ($count < $response->{followers_count}) {
+#    $uri = Mojo::URL->new("https://$server")
+#      ->path("/api/v1/accounts/$response->{id}/followers")
+#      ->query(min_id => 0, limit => 1);
+#    my $followers = _handle_response($uri);
+#  }
+#  $count = 0;
+#  while ($count < $response->{following_count}) {
+#    $uri = Mojo::URL->new("https://$server")
+#      ->path("/api/v1/accounts/$response->{id}/following")
+#      ->query(min_id => 0, limit => 1);
+#    my $following = _handle_response($uri);
+#  }
+#  my $mutual_count = 0;
   $self->render(
     template => 'main/index',
     profile  => $profile,
