@@ -1,4 +1,5 @@
 requires 'Mojolicious';
+requires 'Mojo::DOM';
 requires 'Mojo::JSON';
 requires 'Mojo::URL';
 requires 'Mojo::UserAgent';
