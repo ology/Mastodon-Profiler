@@ -13,17 +13,19 @@ sub index ($self) {
     profile  => undef,
     response => undef,
     posts    => undef,
-    opinions => undef,
+    score    => undef,
   );
 }
 
 sub profiler ($self) {
   my $profile = $self->param('profile') || '';
   my (undef, $user, $server) = split '@', $profile;
+  return $self->redirect_to('index') unless $user && $server;
   my $uri = Mojo::URL->new("https://$server")
     ->path('api/v1/accounts/lookup')
     ->query(acct => $user);
   my $response = _handle_request($uri);
+  return $self->redirect_to('index') unless $response;
   $uri = Mojo::URL->new("https://$server")
     ->path("/api/v1/accounts/$response->{id}/statuses");
   my $last = _handle_request($uri);
@@ -67,11 +69,17 @@ sub profiler ($self) {
 
 sub _handle_request {
     my ($uri) = @_;
-    my $data = {};
+    my $data;
     my $ua = Mojo::UserAgent->new;
     my $tx = $ua->get($uri);
-    my $res = $tx->result;
-    if ($res->is_success) {
+    my $res;
+    try {
+      $res = $tx->result;
+    }
+    catch {
+      warn "Can't get $uri: $!\n";
+    };
+    if ($res && $res->is_success) {
       my $body = $res->body;
       try {
         $data = decode_json($body);
@@ -81,7 +89,7 @@ sub _handle_request {
       };
     }
     else {
-      warn "Connection error: ", $res->message, "\n";
+      warn "No data!\n";
     }
     return $data;
 }
