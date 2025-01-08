@@ -13,7 +13,7 @@
   /
   <b>Followers</b>: <%= $response->{followers_count} %></p>
 <p><b>Posts</b>: <%= $response->{statuses_count} %></p>
-<p><b>Last post</b> (<%= $posts->[-1]->{created_at} %>):</p>
+<p><b>Last post</b> (<%= $posts->[0]->{created_at} %>):</p>
   <div class="bkgdcolor">
     <%== $posts->[-1]->{content} %>
   </div>
