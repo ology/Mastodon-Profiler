@@ -18,13 +18,11 @@
     <%== $posts->[-1]->{content} %>
   </div>
 <p></p>
-<p><b>Last sentiment</b>: <%= $opinions->[-1] %>
+<p><b>Last sentiment</b>: <%= $score %>
 <p><b>First post</b> (<%= $posts->[0]->{created_at} %>):</p>
   <div class="bkgdcolor">
     <%== $posts->[0]->{content} %>
   </div>
-<p></p>
-<p><b>First sentiment</b>: <%= $opinions->[0] %>
 <p></p>
 <img src="<%= $response->{avatar} %>" height="200">
 <img src="<%= $response->{header} %>" height="200">
