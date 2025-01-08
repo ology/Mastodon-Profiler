@@ -29,27 +29,19 @@ sub profiler ($self) {
   my $first = _handle_request($uri);
   $uri = Mojo::URL->new("https://$server")
     ->path("/api/v1/accounts/$response->{id}/statuses")
-    ->query(limit => 1);
+    ;#->query(limit => 1);
   my $last = _handle_request($uri);
-  my $posts = [ $first->[0], $last->[0] ];
-  my @opinions;
-  my $opinion;
-  if ($posts->[0]->{content}) {
-    $opinion = Lingua::EN::Opinion->new(text => $posts->[0]->{content}, stem => 1);
-    $opinion->analyze();
-    push @opinions, $opinion->averaged_scores(0)->[0];
-  }
-  if ($posts->[-1]->{content}) {
-    $opinion = Lingua::EN::Opinion->new(text => $posts->[-1]->{content}, stem => 1);
-    $opinion->analyze();
-    push @opinions, $opinion->averaged_scores(0)->[0];
-  }
+  my $content = join "\n\n", map { $_->{content} } @$last;
+  my $posts = [ $first->[0], @$last ];
+  my $opinion = Lingua::EN::Opinion->new(text => $content, stem => 1);
+  $opinion->analyze();
+  my $score = $opinion->averaged_scores(0)->[0];
   $self->render(
     template => 'main/index',
     profile  => $profile,
     response => $response,
     posts    => $posts,
-    opinions => \@opinions,
+    score    => $score,
   );
 }
 
