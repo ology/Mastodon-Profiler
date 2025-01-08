@@ -25,13 +25,9 @@ sub profiler ($self) {
     ->query(acct => $user);
   my $response = _handle_request($uri);
   $uri = Mojo::URL->new("https://$server")
-    ->path("/api/v1/accounts/$response->{id}/statuses")
-    ->query(min_id => 0, limit => 1);
-  my $first = _handle_request($uri);
-  $uri = Mojo::URL->new("https://$server")
     ->path("/api/v1/accounts/$response->{id}/statuses");
   my $last = _handle_request($uri);
-  my $posts = [ @$first, reverse @$last ];
+  my $posts = [ reverse @$last ];
   my @statuses;
   my $content = '';
   for my $post (@$posts) {
