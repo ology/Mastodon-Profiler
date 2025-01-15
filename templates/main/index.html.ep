@@ -34,12 +34,18 @@
 <div class="media hidden">
   <img src="<%= $response->{avatar} %>" height="200">
   <img src="<%= $response->{header} %>" height="200">
+  <p></p>
 % $count = 0;
 % for my $asset (@$media) {
 %   if ($asset->{media_attachments}[0]{url}) {
-    <img src="<%== $asset->{media_attachments}[0]{url} %>" height="200">
-    <%== $asset->{media_attachments}[0]{description} %>
-    <p></p>
+%     if ($asset->{media_attachments}[0]{url} =~ /^.*\.mp3$/) {
+  <audio controls src="<%= $asset->{media_attachments}[0]{url} %>"></audio>
+%     }
+%     else {
+  <img src="<%= $asset->{media_attachments}[0]{url} %>" height="200">
+%     }
+  <%== $asset->{media_attachments}[0]{description} %>
+  <p></p>
 %   }
 % }
 </div>
