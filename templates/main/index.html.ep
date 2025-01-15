@@ -36,10 +36,9 @@
   <img src="<%= $response->{avatar} %>" height="200">
   <img src="<%= $response->{header} %>" height="200">
   <p></p>
-% $count = 0;
 % for my $asset (@$media) {
 %   if ($asset->{media_attachments}[0]{url}) {
-%     if ($asset->{media_attachments}[0]{url} =~ /^.*\.mp3$/) {
+%     if ($asset->{media_attachments}[0]{url} =~ /^.*\.(?:mp3|mp4|wav)$/) {
   <audio controls src="<%= $asset->{media_attachments}[0]{url} %>"></audio>
 %     }
 %     else {
