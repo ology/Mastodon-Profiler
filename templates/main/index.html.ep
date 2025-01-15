@@ -49,7 +49,7 @@
 %     else {
   <a href="<%= $asset->{media_attachments}[0]{url} %>" target="_none"><img src="<%= $asset->{media_attachments}[0]{url} %>" height="200"></a>
 %     }
-  <%== $asset->{media_attachments}[0]{description} %>
+  <%== $asset->{media_attachments}[0]{description} || '' %>
   <p></p>
 %   }
 % }
