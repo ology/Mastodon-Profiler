@@ -17,16 +17,26 @@
   / <b>Followers</b>: <%= $response->{followers_count} %></p>
 <p><b>Posts</b>: <%= $response->{statuses_count} %></p>
 <p><b>Sentiment</b>: <%= sprintf '%.3f', $score %>
+<b><p class="bluetext showposts">Show posts</p></b>
+<div class="posts">
 % my $count = 0;
 % for my $post (@$posts) {
 %   $count++;
-<p><%= $count %>. <%= $post->{created_at} %>:</p>
-  <div class="bkgdcolor">
-    <%== $post->{content} %>
-  </div>
-<p></p>
+  <p><%= $count %>. <%= $post->{created_at} %>:</p>
+    <div class="bkgdcolor">
+      <%== $post->{content} %>
+    </div>
+  <p></p>
 % }
+</div>
 <p></p>
 <img src="<%= $response->{avatar} %>" height="200">
 <img src="<%= $response->{header} %>" height="200">
 % }
+<script>
+$(document).ready(function() {
+  $('.showposts').click(function() {
+    $('.posts').toggle();
+  });
+});
+</script>
