@@ -29,6 +29,11 @@ sub profiler ($self) {
   $uri = Mojo::URL->new("https://$server")
     ->path("/api/v1/accounts/$response->{id}/statuses");
   my $posts = _handle_request($uri);
+  $uri = Mojo::URL->new("https://$server")
+    ->path("/api/v1/accounts/$response->{id}/statuses")
+    ->query(only_media => 1)
+  ;
+  my $media = _handle_request($uri);
   my @statuses;
   my $content = '';
   for my $post (@$posts) {
@@ -63,6 +68,7 @@ sub profiler ($self) {
     response => $response,
     posts    => \@statuses,
     score    => $score,
+    media    => $media,
   );
 }
 
