@@ -33,8 +33,8 @@
 <p></p>
 <b><p class="bluetext showmedia">Toggle media</p></b>
 <div class="media hidden">
-  <img src="<%= $response->{avatar} %>" height="200">
-  <img src="<%= $response->{header} %>" height="200">
+  <a href="<%= $response->{avatar} %>" target="_none"><img src="<%= $response->{avatar} %>" height="200"></a>
+  <a href="<%= $response->{header} %>" target="_none"><img src="<%= $response->{header} %>" height="200"></a>
   <p></p>
 % for my $asset (@$media) {
 %   if ($asset->{media_attachments}[0]{url}) {
