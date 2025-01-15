@@ -28,8 +28,7 @@ sub profiler ($self) {
   return $self->redirect_to('index') unless $response;
   $uri = Mojo::URL->new("https://$server")
     ->path("/api/v1/accounts/$response->{id}/statuses");
-  my $last = _handle_request($uri);
-  my $posts = [ reverse @$last ];
+  my $posts = _handle_request($uri);
   my @statuses;
   my $content = '';
   for my $post (@$posts) {
