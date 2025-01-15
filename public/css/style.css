@@ -14,3 +14,9 @@
   background-color: #E5E4E2; 
   overflow: auto;
 }
+.bluetext {
+  color: blue;
+}
+.hidden {
+  display: none;
+}
