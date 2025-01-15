@@ -16,12 +16,16 @@
 <p><b>Following</b>: <%= $response->{following_count} %>
   / <b>Followers</b>: <%= $response->{followers_count} %></p>
 <p><b>Posts</b>: <%= $response->{statuses_count} %></p>
-<p><b>Last post</b> (<%= $posts->[-1]->{created_at} %>):</p>
+<p><b>Sentiment</b>: <%= sprintf '%.3f', $score %>
+% my $count = 0;
+% for my $post (@$posts) {
+%   $count++;
+<p><%= $count %>. <%= $post->{created_at} %>:</p>
   <div class="bkgdcolor">
-    <%== $posts->[-1]->{content} %>
+    <%== $post->{content} %>
   </div>
 <p></p>
-<p><b>Last batch sentiment score</b>: <%= sprintf '%.3f', $score %>
+% }
 <p></p>
 <img src="<%= $response->{avatar} %>" height="200">
 <img src="<%= $response->{header} %>" height="200">
