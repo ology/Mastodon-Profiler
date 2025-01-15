@@ -30,13 +30,19 @@
 % }
 </div>
 <p></p>
-<img src="<%= $response->{avatar} %>" height="200">
-<img src="<%= $response->{header} %>" height="200">
+<b><p class="bluetext showmedia">Show media</p></b>
+<div class="media">
+  <img src="<%= $response->{avatar} %>" height="200">
+  <img src="<%= $response->{header} %>" height="200">
+</div>
 % }
 <script>
 $(document).ready(function() {
   $('.showposts').click(function() {
     $('.posts').toggle();
+  });
+  $('.showmedia').click(function() {
+    $('.media').toggle();
   });
 });
 </script>
