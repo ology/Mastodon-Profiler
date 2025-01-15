@@ -17,7 +17,7 @@
   / <b>Followers</b>: <%= $response->{followers_count} %></p>
 <p><b>Posts</b>: <%= $response->{statuses_count} %></p>
 <p><b>Sentiment</b>: <%= sprintf '%.3f', $score %>
-<b><p class="bluetext showposts">Show posts</p></b>
+<b><p class="bluetext showposts">Toggle posts</p></b>
 <div class="posts">
 % my $count = 0;
 % for my $post (@$posts) {
@@ -30,7 +30,7 @@
 % }
 </div>
 <p></p>
-<b><p class="bluetext showmedia">Show media</p></b>
+<b><p class="bluetext showmedia">Toggle media</p></b>
 <div class="media">
   <img src="<%= $response->{avatar} %>" height="200">
   <img src="<%= $response->{header} %>" height="200">
