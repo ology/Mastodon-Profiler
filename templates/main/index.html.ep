@@ -22,7 +22,7 @@
 % my $count = 0;
 % for my $post (@$posts) {
 %   $count++;
-    <p><%= $count %>. <%= $post->{created_at} %>:</p>
+    <p><%= $count %>. <a href="<%= $post->{url} %>" target="_none"><%= $post->{created_at} %></a>:</p>
     <div class="bkgdcolor">
       <%== $post->{content} %>
     </div>
