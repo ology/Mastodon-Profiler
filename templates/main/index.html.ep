@@ -22,11 +22,11 @@
 % my $count = 0;
 % for my $post (@$posts) {
 %   $count++;
-  <p><%= $count %>. <%= $post->{created_at} %>:</p>
+    <p><%= $count %>. <%= $post->{created_at} %>:</p>
     <div class="bkgdcolor">
       <%== $post->{content} %>
     </div>
-  <p></p>
+    <p></p>
 % }
 </div>
 <p></p>
@@ -34,6 +34,14 @@
 <div class="media hidden">
   <img src="<%= $response->{avatar} %>" height="200">
   <img src="<%= $response->{header} %>" height="200">
+% $count = 0;
+% for my $asset (@$media) {
+%   if ($asset->{media_attachments}[0]{url}) {
+    <img src="<%== $asset->{media_attachments}[0]{url} %>" height="200">
+    <%== $asset->{media_attachments}[0]{description} %>
+    <p></p>
+%   }
+% }
 </div>
 % }
 <script>
