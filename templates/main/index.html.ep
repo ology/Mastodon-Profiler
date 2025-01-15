@@ -28,6 +28,7 @@
     </div>
     <p></p>
 % }
+<b><p class="bluetext showposts">Hide posts</p></b>
 </div>
 <p></p>
 <b><p class="bluetext showmedia">Toggle media</p></b>
@@ -48,6 +49,7 @@
   <p></p>
 %   }
 % }
+<b><p class="bluetext showmedia">Hide media</p></b>
 </div>
 % }
 <script>
